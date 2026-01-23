@@ -463,7 +463,7 @@ class Application(object):
             if not description:
                 description = pypi_version.summary
             if not license:
-                license = pypi_version.license
+                license = pypi_version.license.partition('\n')[0]
             if not upstream_contact:
                 upstream_contact = pypi_version.package_url
         if upstream_url and not tarball:
