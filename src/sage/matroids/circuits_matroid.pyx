@@ -829,7 +829,7 @@ cdef class CircuitsMatroid(Matroid):
         from sage.topology.simplicial_complex import SimplicialComplex
         if self.loops():
             raise ValueError("broken circuit complex of matroid with loops is not defined")
-        return SimplicialComplex(self.no_broken_circuits_facets(ordering, reduced), maximality_check=False)
+        return SimplicialComplex(self.no_broken_circuits_facets(ordering, reduced), maximality_check=False, is_immutable=True)
 
     # properties
 
