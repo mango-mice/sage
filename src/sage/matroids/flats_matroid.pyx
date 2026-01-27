@@ -410,7 +410,7 @@ cdef class FlatsMatroid(Matroid):
 
     # enumeration
 
-    cpdef SetSystem flats(self, long k):
+    cpdef SetSystem flats(self, long k=-1):
         r"""
         Return the flats of the matroid of specified rank.
 
@@ -432,6 +432,11 @@ cdef class FlatsMatroid(Matroid):
              frozenset({1, 3}),
              frozenset({2, 3})]
         """
+        if k == -1:
+            all_subsets = []
+            for k in self._k_F:
+                all_subsets.extend(self._k_F[k])
+            return SetSystem(self._groundset, all_subsets)
         if k in self._k_F:
             return SetSystem(self._groundset, self._k_F[k])
         return SetSystem(self._groundset)

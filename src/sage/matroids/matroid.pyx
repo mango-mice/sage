@@ -2997,7 +2997,7 @@ cdef class Matroid(SageObject):
             flags = self._extend_flags(flags)
         return flags
 
-    cpdef SetSystem flats(self, long k):
+    cpdef SetSystem flats(self, long k=-1):
         r"""
         Return the collection of flats of the matroid of specified rank.
 
@@ -3021,6 +3021,11 @@ cdef class Matroid(SageObject):
             ['b', 'c', 'd'], ['b', 'e', 'g'], ['c', 'f', 'g'],
             ['d', 'e', 'f']]
         """
+        if k == -1:
+            all_subsets = []
+            for i in range(self.rank() + 1):
+                all_subsets.extend([f[0] for f in self._flags(i)])
+            return SetSystem(self.groundset(), subsets=all_subsets)
         return SetSystem(self.groundset(), subsets=[f[0] for f in self._flags(k)])
 
     cpdef SetSystem coflats(self, long k):
