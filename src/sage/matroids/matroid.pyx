@@ -8305,6 +8305,10 @@ cdef class Matroid(SageObject):
 
         TESTS::
 
+            sage: M = Matroid(circuits=[[1,2,3], [3,4,5], [1,2,4,5]])
+            sage: M.broken_circuit_complex().is_immutable()                             # needs sage.graphs
+            True
+
             sage: for M in matroids.AllMatroids(5):  # optional - matroid_database
             ....:     r = M.rank()
             ....:     if r > 0 and not M.dual().loops():
