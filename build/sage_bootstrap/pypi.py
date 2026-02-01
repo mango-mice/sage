@@ -103,7 +103,7 @@ class PyPiVersion(object):
     @property
     def license_expression(self):
         """
-        Return the package license
+        Return the package license expression
         """
         return self.json['info']['license_expression']
 
