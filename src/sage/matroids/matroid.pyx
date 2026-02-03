@@ -8305,7 +8305,7 @@ cdef class Matroid(SageObject):
 
         TESTS::
 
-            sage: M = Matroid(circuits=[[1,2,3], [3,4,5], [1,2,4,5]])
+            sage: M = matroids.catalog.Fano()
             sage: M.broken_circuit_complex().is_immutable()                             # needs sage.graphs
             True
 
