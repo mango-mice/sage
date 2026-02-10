@@ -3005,7 +3005,8 @@ cdef class Matroid(SageObject):
 
         INPUT:
 
-        - ``k`` -- integer
+        - ``k`` -- integer (optional); if specified, return the rank-`k`
+          flats of the matroid
 
         OUTPUT: :class:`SetSystem`
 
@@ -3020,13 +3021,22 @@ cdef class Matroid(SageObject):
             [['a', 'b', 'f'], ['a', 'c', 'e'], ['a', 'd', 'g'],
             ['b', 'c', 'd'], ['b', 'e', 'g'], ['c', 'f', 'g'],
             ['d', 'e', 'f']]
+
+        TESTS::
+            sage: M = matroids.catalog.Vamos()
+            sage: M.flats(2)
+            SetSystem of 28 sets over 8 elements
+            sage: M.flats()
+            SetSystem of 79 sets over 8 elements
+
         """
+        cdef list F = []
         if k == -1:
-            all_subsets = []
             for i in range(self.rank() + 1):
-                all_subsets.extend([f[0] for f in self._flags(i)])
-            return SetSystem(self.groundset(), subsets=all_subsets)
-        return SetSystem(self.groundset(), subsets=[f[0] for f in self._flags(k)])
+                F.extend([f[0] for f in self._flags(i)])
+        else:
+            F.extend([f[0] for f in self._flags(k)])
+        return SetSystem(self.groundset(), F)
 
     cpdef SetSystem coflats(self, long k):
         r"""

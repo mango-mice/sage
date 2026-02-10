@@ -1263,7 +1263,8 @@ cdef class BasisExchangeMatroid(Matroid):
 
         INPUT:
 
-        - ``k`` -- integer
+        - ``k`` -- integer (optional); if specified, return the rank-`k`
+          flats of the matroid
 
         OUTPUT: :class:`SetSystem`
 
@@ -1283,11 +1284,12 @@ cdef class BasisExchangeMatroid(Matroid):
             sage: len(M.flats(4))
             1
         """
+        cdef list F = []
         if k == -1:
-            all_subsets = []
             for i in range(self.rank() + 1):
-                all_subsets.extend(list(self.flats(i)))
-            return SetSystem(self._E, all_subsets)
+                F.extend(list(self.flats(i)))
+            return SetSystem(self._E, F)
+
         cdef bitset_t *flats
         cdef bitset_t *todo
         if k < 0 or k > self.full_rank():
