@@ -412,7 +412,7 @@ cdef class FlatsMatroid(Matroid):
 
     cpdef SetSystem flats(self, long k=-1):
         r"""
-        Return the flats of the matroid of specified rank.
+        Return the flats of the matroid.
 
         INPUT:
 

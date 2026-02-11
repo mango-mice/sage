@@ -2999,7 +2999,7 @@ cdef class Matroid(SageObject):
 
     cpdef SetSystem flats(self, long k=-1):
         r"""
-        Return the collection of flats of the matroid of specified rank.
+        Return the collection of flats of the matroid.
 
         A *flat* is a closed set.
 
@@ -3023,12 +3023,12 @@ cdef class Matroid(SageObject):
             ['d', 'e', 'f']]
 
         TESTS::
+
             sage: M = matroids.catalog.Vamos()
             sage: M.flats(2)
             SetSystem of 28 sets over 8 elements
             sage: M.flats()
             SetSystem of 79 sets over 8 elements
-
         """
         cdef list F = []
         if k == -1:
