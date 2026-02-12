@@ -1257,7 +1257,7 @@ cdef class BasisExchangeMatroid(Matroid):
 
     cpdef SetSystem flats(self, long k=-1):
         """
-        Return the collection of flats of the matroid.
+        Return the flats of the matroid.
 
         A *flat* is a closed set.
 
